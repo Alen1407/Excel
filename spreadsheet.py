@@ -12,10 +12,10 @@ class spreadsheet:
                 self.mat[i].append(cell.cell())
 
     def setCellAt(self, row: int, column: int, val):
-        if isinstance(val, str):
-            self.mat[row][column].value = val
-        elif isinstance(val, cell.cell):
+        if isinstance(val, cell.cell):
             self.mat[row][column] = copy.deepcopy(val)
+        else:
+            self.mat[row][column].value = val
 
     def getCellAt(self, row: int, column: int):
         if row >= 0 and row < len(self.mat) and column >= 0 and column < len(self.mat[0]):
@@ -44,3 +44,9 @@ class spreadsheet:
     def swapColumns(self, first:int, second:int):
         for i in self.mat:
             i[first], i[second] = i[second], i[first]
+
+    def printSpreadsheet(self):
+        for i in self.mat:
+            for j in i:
+                print(j.value, end=" ")
+            print()
